@@ -57,22 +57,6 @@ int main()
 		fprintf(fp, "\tstruct node%d *node%d = (struct node%d *) malloc(sizeof(struct node%d));\n", node_edges[i], i+1, node_edges[i], node_edges[i]);
 		fprintf(fp, "\tnode%d->val = %d;\n", i+1, node_vals[i]);
 		int size = sizeof(nodes_vis[i])/sizeof(nodes_vis[0][0]);
-		/*for(j = 0; j < 100; j++)
-		{
-			if(nodes_vis[i][j] > 0)
-			{
-				temp++;
-			}
-			else
-			{
-				goto mark1;
-			}
-		}
-		mark1:
-		for(j = 0; j < temp; j++)
-		{
-			fprintf(fp, "\tnode%d->next%d = %d;\n", i+1, j+1, nodes_vis[i][j]);
-		}*/
 		node_repeats[node_edges[i]] = node_repeats[node_edges[i]] + 1;
 	}
 	for(i = 0; i < number; i++)
