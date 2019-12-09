@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/types.h> 
 #include <sys/wait.h>
@@ -45,7 +46,7 @@ int main()
 		fprintf(fp, "\tstruct node%d \n\t{\n\t\tint val;\n\t", node_edges[i]);
 		for(j = 0; j < node_edges[i]; j++)
 		{
-			fprintf(fp, "\tstruct node%d *next%d;\n\t", nodes_vis[i][j], j+1);
+			fprintf(fp, "\tstruct node%d *next%d;\n\t", node_edges[nodes_vis[i][j]-1], j+1);
 		}
 		fprintf(fp, "};\n");
 	}
@@ -94,13 +95,10 @@ int main()
 			fprintf(fp, "\tnode%d->next%d = node%d;\n", i+1, j+1, nodes_vis[i][j]);
 		}
 	}
+	fprintf(fp, "\tprintf(\"Success.\");\n");
 	fprintf(fp, "\treturn 0;\n}\n");
     fclose(fp);
     int status = system("gcc -o Struct Struct.c");
     int status_2 = system("./Struct");
-    if(status_2)
-    {
-    	printf("Success.\n");
-    }
     return 0;
 }
